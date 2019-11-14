@@ -10,6 +10,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Activity_TicketDetail"
+            android:label="@string/title_activity__ticket_detail"
+            android:parentActivityName=".Activity_Ticketlist"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.osp.Activity_Ticketlist" />
+        </activity>
+        <activity
+            android:name=".Activity_Ticketlist"
+            android:label="Tickets zu XXX"
+            android:parentActivityName=".Activity_RoomDetail_Grid">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.osp.Activity_RoomDetail_Grid" />
+        </activity>
+        <activity
             android:name=".Activity_RoomDetail_Grid"
             android:label="@string/title_activity__room_detail__grid"
             android:parentActivityName=".MainActivity"

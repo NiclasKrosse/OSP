@@ -18,4 +18,6 @@
     <string name="str_Raster">Rasteransicht</string>
     <string name="title_activity__room_detail__grid">Raumdetailansicht</string>
     <string name="list_View">Listenansicht</string>
+    <string name="addNewTicket">Ticket erstellen</string>
+    <string name="title_activity__ticket_detail">Ticket: #XXX</string>
 </resources>
