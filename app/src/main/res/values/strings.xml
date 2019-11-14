@@ -16,4 +16,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="str_Raster">Rasteransicht</string>
+    <string name="title_activity__room_detail__grid">Raumdetailansicht</string>
+    <string name="list_View">Listenansicht</string>
 </resources>

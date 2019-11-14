@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void InitList()
   {
-      ListView nView = findViewById(R.id.listview_rooms);
+      final ListView nView = findViewById(R.id.listview_rooms);
       String[] nDataset = {"C001","C002","C003","C004","C005","B001"};//new String[5];
 
       nView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nDataset));
@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
           {
               Intent intent = new Intent(MainActivity. this,Activity_RoomDetail.class);
 
+              //Raumnummer übergeben
+              intent.putExtra("room_number",parent.getItemAtPosition(position).toString());
               //based on item add info to intent
               startActivity(intent);
           }

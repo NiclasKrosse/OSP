@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Activity_RoomDetail_Grid"
+            android:label="@string/title_activity__room_detail__grid"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.osp.MainActivity" />
+        </activity>
+        <activity
             android:name=".Activity_RoomDetail"
             android:label="@string/title_activity__room_detail"
             android:parentActivityName=".MainActivity">
