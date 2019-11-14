@@ -14,7 +14,8 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="56dp" >
+            android:layout_height="56dp"
+            android:visibility="gone">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar3"
@@ -27,11 +28,13 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="606dp" >
+            android:layout_height="525dp">
 
             <ListView
+                android:id="@+id/listview_pcs"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
+
         </TableRow>
 
         <TableRow
@@ -39,15 +42,12 @@
             android:layout_height="match_parent" >
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="3dp"
-                android:paddingTop="3dp"
-                android:paddingRight="3dp"
-                android:paddingBottom="3dp"
-                android:text="Rasteransicht" />
+                android:layout_height="77dp"
+                android:text="@string/str_Raster" />
         </TableRow>
+
     </LinearLayout>
 
 
