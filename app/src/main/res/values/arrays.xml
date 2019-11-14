@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ARR">
+        <item name="c002">C002</item>
+        <item name="c001">C001</item>
+    </string-array>
+
+</resources>

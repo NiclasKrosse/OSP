@@ -75,7 +75,8 @@ public class LoginActivity extends AppCompatActivity {
                     showLoginFailed(loginResult.getError());
                 }
                 if (loginResult.getSuccess() != null) {
-                    updateUiWithUser(loginResult.getSuccess());
+                    //updateUiWithUser(loginResult.getSuccess());
+                    Toast.makeText(getApplicationContext(), "Hallo Frau Riemann", Toast.LENGTH_LONG).show();
                 }
                 setResult(Activity.RESULT_OK);
 
