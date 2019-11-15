@@ -1,0 +1,39 @@
+BEGIN TRANSACTION;
+CREATE TABLE IF NOT EXISTS Standardfehler (
+	Fehlername VARCHAR(255) PRIMARY KEY,
+	Fehlerbeschreibung VARCHAR(255),
+	Priorität	VARCHAR(255)
+);
+CREATE TABLE IF NOT EXISTS Raum (
+	Raumname	VARCHAR(255) PRIMARY KEY,
+	Raumbetreuer	VARCHAR(255),
+);
+CREATE TABLE IF NOT EXISTS Geraete (
+	GeräteID	INTEGER PRIMARY KEY,
+	Gerätename	VARCHAR(255) NOT NULL,
+	xKoordinate	INTEGER,
+	yKoordinate	INTEGER,
+	Raumname	VARCHAR(255),
+	FOREIGN KEY(Raumname) REFERENCES Raum(Raumbetreuer)
+);
+CREATE TABLE IF NOT EXISTS Inventar (
+	Inventar	VARCHAR(255) PRIMARY KEY,
+	x-Koordinate	INTEGER,
+	y-Koordinate	INTEGER,
+	Raumname	VARCHAR(255),
+	FOREIGN KEY(Raumname) REFERENCES Raum(Raumname)
+);
+
+CREATE TABLE IF NOT EXISTS Ticket (
+	Ticket-ID	INTEGER PRIMARY KEY,
+	Status	VARCHAR(255),
+	GeräteID	INTEGER,
+	Fehlername	VARCHAR(255),
+	FOREIGN KEY (GeräteID) REFERENCES Geräte(GeräteID)
+	FOREIGN KEY(Fehlername) REFERENCES Standardfehler(Fehlername)
+);
+CREATE TABLE IF NOT EXISTS Benutzer (
+	Rolle	VARCHAR(255),
+	EMail	VARCHAR(255),
+	Passwort	VARCHAR(255)
+);

@@ -79,4 +79,37 @@ public class RaumbetreuerDataSource {
         }
         return null;
     }
+
+    public Geraet selectGeraet(int id) {
+        database.rawQuery("SELECT * FROM Geraet WHERE Geraetenummer = ?", new String[] {Integer.toString(id)} );
+
+
+        return null;
+    }
+
+    public Geraet[] selectGeraete() {
+        int counter = 0;
+        Cursor c = database.rawQuery("SELECT COUNT(id) FROM Geraet", null);
+        if(c.moveToFirst()){
+            int groesse = c.getInt(0);
+            Geraet[] geraete = new Geraet[groesse];
+
+            Cursor c1 = database.rawQuery("SELECT * FROM Geraet", null);
+            if(c1.moveToFirst()) {
+                do{
+                    int id = c1.getInt(0);
+                    String name = c1.getString(1);
+                    int y = c1.getInt(2);
+                    int x = c1.getInt(3);
+                    String raum = c1.getString(4);
+
+                    Geraet geraet = new Geraet(id, x, y, raum, name);
+                    geraete[counter] = geraet;
+                    counter++;
+                } while (c.moveToNext());
+                return geraete;
+            }
+        }
+        return null;
+    }
 }
