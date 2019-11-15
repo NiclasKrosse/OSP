@@ -20,6 +20,10 @@ public class RaumbetreuerDataSource {
         database = dbHelper.getWritableDatabase();
     }
 
+    /**
+     * Funktion um einen Raum in die DB zu schreiben
+     * @param raum Raum, der in die DB geschrieben wird.
+     */
     public void insertRaum(Raum raum) {
         ContentValues values = new ContentValues();
         values.put("Raumname", raum.raumName);
@@ -28,6 +32,10 @@ public class RaumbetreuerDataSource {
         database.insert("Raum", null, values);
     }
 
+    /**
+     * Funktion um ein Gerät in die DB zu schreiben
+     * @param geraet Gerät, dass in die DB geschrieben wird
+     */
     public void insertGeraet(Geraet geraet) {
         ContentValues values = new ContentValues();
         values.put("Geraetename", geraet.geraeteName);
@@ -39,6 +47,10 @@ public class RaumbetreuerDataSource {
         database.insert("Geraet", null, values);
     }
 
+    /**
+     * Funktion um ein Ticket in die DB zu schreiben
+     * @param ticket Ticket, dass in die DB geschrieben wird
+     */
     public void insertTicket(Ticket ticket) {
         ContentValues values = new ContentValues();
         values.put("TicketID", ticket.ticketID);
@@ -59,6 +71,10 @@ public class RaumbetreuerDataSource {
         return null;
     }
 
+    /**
+     * Alle Räume aus der DB
+     * @return Räume als Array
+     */
     public Raum[] selectRaeume() {
         int counter = 0;
         Cursor c = database.rawQuery("SELECT COUNT(Raumname) FROM Raum", null);
@@ -82,6 +98,11 @@ public class RaumbetreuerDataSource {
         return null;
     }
 
+    /**
+     * Alle Geräte für einen bestimmten Raum, die in der DB gespeichert sind
+     * @param raumname Raum für den die Geräte ausgelesen werden sollen
+     * @return Geräte als Array
+     */
     public Geraet[] selectGeraete(String raumname)
     {
         int counter = 0;
@@ -109,6 +130,10 @@ public class RaumbetreuerDataSource {
         return null;
     }
 
+    /**
+     * Funktion, die alle Standardfehler aus der DB ausliest
+     * @return Standardfehler aus der DB als Array
+     */
     public Standardfehler[] selectStandardfehler() {
         int counter = 0;
         Cursor c = database.rawQuery("SELECT COUNT(Fehlername) FROM STANDARDFEHLER", null);
@@ -132,6 +157,12 @@ public class RaumbetreuerDataSource {
         }
         return null;
     }
+
+    /**
+     * Funktion, die alle Tickets mit der übergebenen @param GeaeteID aus der DB ausliest
+     * @param GeraeteId Die GeraeteID für die, alle Tickets ausgeliefert werden
+     * @return alle Tickets in einem Array
+     */
 
     public Ticket[] selectTickets(int GeraeteId) {
         int counter = 0;
@@ -158,6 +189,10 @@ public class RaumbetreuerDataSource {
         return null;
     }
 
+    /**
+     * Funktion, die alle Tickets aus der DB ausliest
+     * @return alle Tickets in einem Array
+     */
     public Ticket[] selectTickets() {
         int counter = 0;
         Cursor c = database.rawQuery("SELECT COUNT(TicketID) FROM Ticket", null);

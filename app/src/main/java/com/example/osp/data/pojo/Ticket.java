@@ -1,5 +1,8 @@
 package com.example.osp.data.pojo;
 
+/**
+ * Klasse um ein Ticket aus der DB zu halten
+ */
 public class Ticket {
 
     public final String ticketID;

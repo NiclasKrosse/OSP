@@ -1,5 +1,8 @@
 package com.example.osp.data.pojo;
 
+/**
+ * Klasse um einen Standardfehler aus der DB zu halten
+ */
 public class Standardfehler {
 
     public final String fehlerName;

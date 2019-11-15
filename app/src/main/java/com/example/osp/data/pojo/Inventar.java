@@ -1,5 +1,8 @@
 package com.example.osp.data.pojo;
 
+/**
+ * Klasse um ein Inventar aus der DB zu halten
+ */
 public class Inventar {
 
    public final int id;

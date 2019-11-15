@@ -1,5 +1,8 @@
 package com.example.osp.data.pojo;
 
+/**
+ * Klasse um ein Gerät aus der DB zu halten
+ */
 public class Geraet extends Inventar{
     public final String geraeteName;
 
