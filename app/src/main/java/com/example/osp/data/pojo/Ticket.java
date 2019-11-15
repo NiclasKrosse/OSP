@@ -5,7 +5,7 @@ package com.example.osp.data.pojo;
  */
 public class Ticket {
 
-    public final String ticketID;
+    public String ticketID;
     public final String status;
     public final int geraeteNummer;
     public final String fehlerName;
@@ -18,5 +18,9 @@ public class Ticket {
         this.fehlerName = fehlerName;
     }
 
-
+    public Ticket(String status, int geraeteNummer, String fehlerName) {
+        this.status = status;
+        this.geraeteNummer = geraeteNummer;
+        this.fehlerName = fehlerName;
+    }
 }
