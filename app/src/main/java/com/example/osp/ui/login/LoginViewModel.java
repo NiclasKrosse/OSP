@@ -44,7 +44,7 @@ public class LoginViewModel extends ViewModel {
     public void loginDataChanged(String username, String password) {
         if (!isUserNameValid(username)) {
             loginFormState.setValue(new LoginFormState(R.string.invalid_username, null));
-        } else if (!isPasswordValid(password)) {
+        } else if (!isPasswordValid(password, username)) {
             loginFormState.setValue(new LoginFormState(null, R.string.invalid_password));
         } else {
             loginFormState.setValue(new LoginFormState(true));
@@ -53,19 +53,26 @@ public class LoginViewModel extends ViewModel {
     }
 
     // A placeholder username validation check
-    private boolean isUserNameValid(String username) {
-        if (username == null) {
+    private boolean isUserNameValid(String username)
+    {
+        if (username == null)
+        {
             return false;
         }
-        if (username.contains("@")) {
-            return Patterns.EMAIL_ADDRESS.matcher(username).matches();
-        } else {
-            return !username.trim().isEmpty();
+
+        switch (username.toLowerCase())
+        {
+            case "gso-lehrer@schule.koeln" : return true;
+            case "gso-raumbetreuer@schule.koeln" : return true;
+            case "gso-werkstatt@schule.koeln" : return true;
+            default: return false;
+
         }
+
     }
 
     // A placeholder password validation check
-    private boolean isPasswordValid(String password)
+    private boolean isPasswordValid(String password, String username)
     {
         //todo
         //return password != null && password.trim().length() > 5;
