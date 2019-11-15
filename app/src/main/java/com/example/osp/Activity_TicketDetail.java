@@ -257,7 +257,7 @@ public class Activity_TicketDetail extends AppCompatActivity {
         Geraet nPc = new Geraet(100,1,1,mRoomNumber,mPcNumber);
 
         //Ticket anlegen
-        Ticket nTicketToSave = new Ticket("100",nStatus,nPc.id,nError);
+        Ticket nTicketToSave = new Ticket(nStatus,nPc.id,nError);
         raumbetreuerDataSource.insertTicket(nTicketToSave);
     }
 }
