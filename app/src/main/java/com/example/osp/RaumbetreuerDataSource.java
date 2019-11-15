@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.osp.data.pojo.Geraet;
 import com.example.osp.data.pojo.Raum;
+import com.example.osp.data.pojo.Standardfehler;
 import com.example.osp.data.pojo.Ticket;
 
 import java.lang.reflect.Array;
@@ -81,13 +82,6 @@ public class RaumbetreuerDataSource {
         return null;
     }
 
-    public Geraet selectGeraet(int id) {
-        database.rawQuery("SELECT * FROM Geraet WHERE Geraetenummer = ?", new String[] {Integer.toString(id)} );
-
-
-        return null;
-    }
-
     public Geraet[] selectGeraete(String raumname)
     {
         int counter = 0;
@@ -115,7 +109,26 @@ public class RaumbetreuerDataSource {
         return null;
     }
 
-    public void oncreate() {
-        //dbHelper.onCreate(this);
+    public Standardfehler[] selectStandardfehler() {
+        int counter = 0;
+        Cursor c = database.rawQuery("SELECT COUNT(Fehlername) FROM STANDARDFEHLER", null);
+        if(c.moveToFirst()) {
+            int groesse = c.getInt(0);
+            Standardfehler[] fehler = new Standardfehler[groesse];
+
+            Cursor c1 = database.rawQuery("SELECT * FROM STANDARDFEHLER", null);
+            if(c1.moveToFirst()){
+                do{
+                    String name = c1.getString(0);
+                    String beschreibung = c1.getString(1);
+                    String prio = c1.getString(2);
+
+                    Standardfehler f = new Standardfehler(name, beschreibung, prio);
+                    fehler[counter] = f;
+                } while (c1.moveToNext());
+                return fehler;
+            }
+        }
+        return null;
     }
 }
