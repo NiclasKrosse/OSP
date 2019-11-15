@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
     private RecyclerView.Adapter mAdapter;
+    private RaumbetreuerDataSource dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        dataSource = new RaumbetreuerDataSource(this);
 
         InitList();
 /*        ListView nView = findViewById(R.id.listview_rooms);
