@@ -9,7 +9,7 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
     private static final String LOG_TAG = RaumbetreuerDbHelper.class.getSimpleName();
 
     public RaumbetreuerDbHelper(Context context) {
-        super(context, "raumbetreuer-test-1.db", null, 1);
+        super(context, "raumbetreuer-test-3.db", null, 1);
         Log.d(LOG_TAG, "DbHelper hat die Datenbank: " + getDatabaseName() + " erzeugt.");
 
     }
@@ -28,7 +28,7 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
                     "\tRaumbetreuer\tVARCHAR(255)\n" +
                     ");");
             db.execSQL("CREATE TABLE IF NOT EXISTS Geraet (\n" +
-                    "\tGeraeteID\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                    "\tGeraeteID\tINTEGER PRIMARY KEY ,\n" +
                     "\tGeraetename\tVARCHAR(255) NOT NULL,\n" +
                     "\txKoordinate\tINTEGER,\n" +
                     "\tyKoordinate\tINTEGER,\n" +
@@ -43,7 +43,7 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
                     "\tFOREIGN KEY(Raumname) REFERENCES Raum(Raumname)\n" +
                     ");");
             db.execSQL("CREATE TABLE IF NOT EXISTS Ticket (\n" +
-                    "\tTicketID\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                    "\tTicketID\tINTEGER PRIMARY KEY ,\n" +
                     "\tStatus\tVARCHAR(255),\n" +
                     "\tGeraeteID\tINTEGER,\n" +
                     "\tFehlername\tVARCHAR(255),\n" +
