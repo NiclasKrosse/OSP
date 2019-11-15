@@ -21,7 +21,7 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE TABLE IF NOT EXISTS Standardfehler (\n" +
                     "\tFehlername VARCHAR(255) PRIMARY KEY,\n" +
                     "\tFehlerbeschreibung VARCHAR(255),\n" +
-                    "\tPriorität\tVARCHAR(255)\n" +
+                    "\tPrioritaet\tVARCHAR(255)\n" +
                     ");");
             db.execSQL("CREATE TABLE IF NOT EXISTS Raum (\n" +
                     "\tRaumname\tVARCHAR(255) PRIMARY KEY,\n" +
@@ -56,32 +56,32 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
                     "\tPasswort\tVARCHAR(255)\n" +
                     ");");
 
-            db.execSQL("INSERT INTO RAUM VALUES ('C025', 'Herr Jansen');");
-            db.execSQL("INSERT INTO RAUM VALUES ('C013', 'Herr Mustermann');");
-            db.execSQL("INSERT INTO RAUM VALUES ('C006', 'Frau Doe');\n");
+            db.execSQL("INSERT INTO Raum ('Raumname', 'Raumbetreuer') VALUES ('C025', 'Herr Jansen');");
+            db.execSQL("INSERT INTO Raum ('Raumname', 'Raumbetreuer') VALUES ('C013', 'Herr Mustermann');");
+            db.execSQL("INSERT INTO Raum ('Raumname', 'Raumbetreuer') VALUES ('C006', 'Frau Doe');\n");
 
-            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-11', 1, 1, 'C025')");
-            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-12', 1, 2, 'C025')");
-            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-22', 2, 2, 'C025')");
-            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-21', 2, 1, 'C025')");
+            db.execSQL("INSERT INTO Geraet('GeraeteID', 'Geraetename', 'xKoordinate', 'yKoordinate', 'Raumname') VALUES (0, 'PC-11', 1, 1, 'C025')");
+            db.execSQL("INSERT INTO Geraet('GeraeteID', 'Geraetename', 'xKoordinate', 'yKoordinate', 'Raumname')VALUES ( null, 'PC-12', 1, 2, 'C025')");
+            db.execSQL("INSERT INTO Geraet('GeraeteID', 'Geraetename', 'xKoordinate', 'yKoordinate', 'Raumname') VALUES ( null,'PC-22', 2, 2, 'C025')");
+            db.execSQL("INSERT INTO Geraet('GeraeteID', 'Geraetename', 'xKoordinate', 'yKoordinate', 'Raumname') VALUES ( null,'PC-21', 2, 1, 'C025')");
 
-            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-11', 1, 1, 'C006')");
-            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-12', 1, 2, 'C006')");
-            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-22', 2, 2, 'C006')");
-            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-21', 2, 1, 'C006')");
+            db.execSQL("INSERT INTO Geraet ('GeraeteID', 'Geraetename', 'xKoordinate', 'yKoordinate', 'Raumname')VALUES ( null, 'PC-11', 1, 1, 'C006')");
+            db.execSQL("INSERT INTO Geraet ('GeraeteID', 'Geraetename', 'xKoordinate', 'yKoordinate', 'Raumname')VALUES ( null,'PC-12', 1, 2, 'C006')");
+            db.execSQL("INSERT INTO Geraet ('GeraeteID', 'Geraetename', 'xKoordinate', 'yKoordinate', 'Raumname')VALUES ( null,'PC-22', 2, 2, 'C006')");
+            db.execSQL("INSERT INTO Geraet ('GeraeteID', 'Geraetename', 'xKoordinate', 'yKoordinate', 'Raumname')VALUES ( null,'PC-21', 2, 1, 'C006')");
 
-            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-11', 1, 1, 'C013')");
-            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-12', 1, 2, 'C013')");
-            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-22', 2, 2, 'C013')");
-            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-21', 2, 1, 'C013')");
+            db.execSQL("INSERT INTO Geraet ('GeraeteID', 'Geraetename', 'xKoordinate', 'yKoordinate', 'Raumname')VALUES ( null,'PC-11', 1, 1, 'C013')");
+            db.execSQL("INSERT INTO Geraet ('GeraeteID', 'Geraetename', 'xKoordinate', 'yKoordinate', 'Raumname')VALUES ( null,'PC-12', 1, 2, 'C013')");
+            db.execSQL("INSERT INTO Geraet ('GeraeteID', 'Geraetename', 'xKoordinate', 'yKoordinate', 'Raumname')VALUES ( null,'PC-22', 2, 2, 'C013')");
+            db.execSQL("INSERT INTO Geraet ('GeraeteID', 'Geraetename', 'xKoordinate', 'yKoordinate', 'Raumname')VALUES ( null,'PC-21', 2, 1, 'C013')");
 
-            db.execSQL("INSERT INTO Standardfehler VALUES ('Hardware defekt', 'Hardware Fehler (z.B. Maus, Monitor, Tastatur defekt)', 'normal')");
-            db.execSQL("INSERT INTO Standardfehler VALUES ('Software defekt', 'Software Fehler (z.B. Windows startet nicht, Bluescreen', 'normal')");
-            db.execSQL("INSERT INTO Standardfehler VALUES ('Performance Probleme', 'Performance Probleme (z.B. Unverhältnismäßige  Ladezeiten)', 'niedrig')");
-            db.execSQL("INSERT INTO Standardfehler VALUES ('Netzwerk Fehler', 'Netzwerk Fehler (z..B. kein Zugriff auf Intranet oder Internet)', 'hoch')");
-            db.execSQL("INSERT INTO Standardfehler VALUES ('Unbekannter Fehler', '', 'hoch')");
+            db.execSQL("INSERT INTO Standardfehler ('Fehlername', 'Fehlerbeschreibung', 'Prioritaet')VALUES ('Hardware defekt', 'Hardware Fehler (z.B. Maus, Monitor, Tastatur defekt)', 'normal')");
+            db.execSQL("INSERT INTO Standardfehler ('Fehlername', 'Fehlerbeschreibung', 'Prioritaet')VALUES ('Software defekt', 'Software Fehler (z.B. Windows startet nicht, Bluescreen', 'normal')");
+            db.execSQL("INSERT INTO Standardfehler ('Fehlername', 'Fehlerbeschreibung', 'Prioritaet')VALUES ('Performance Probleme', 'Performance Probleme (z.B. Unverhältnismäßige  Ladezeiten)', 'niedrig')");
+            db.execSQL("INSERT INTO Standardfehler ('Fehlername', 'Fehlerbeschreibung', 'Prioritaet')VALUES ('Netzwerk Fehler', 'Netzwerk Fehler (z..B. kein Zugriff auf Intranet oder Internet)', 'hoch')");
+            db.execSQL("INSERT INTO Standardfehler ('Fehlername', 'Fehlerbeschreibung', 'Prioritaet')VALUES ('Unbekannter Fehler', '', 'hoch')");
 
-            db.execSQL("INSERT INTO Ticket VALUES ('', 'Offen', 1, 'Hardware defekt')");
+            db.execSQL("INSERT INTO Ticket ('TicketID', 'Status', 'GeraeteID', 'Fehlername')VALUES (null, 'Offen', 1, 'Hardware defekt')");
 
         } catch (Exception e) {
             Log.d(LOG_TAG, "Tabellen konnten nicht erzeugt werden.");
