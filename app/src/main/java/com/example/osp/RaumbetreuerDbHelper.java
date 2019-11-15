@@ -9,7 +9,7 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
     private static final String LOG_TAG = RaumbetreuerDbHelper.class.getSimpleName();
 
     public RaumbetreuerDbHelper(Context context) {
-        super(context, "raumbetreuer-test.db", null, 1);
+        super(context, "raumbetreuer-test-1.db", null, 1);
         Log.d(LOG_TAG, "DbHelper hat die Datenbank: " + getDatabaseName() + " erzeugt.");
 
     }
@@ -28,7 +28,7 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
                     "\tRaumbetreuer\tVARCHAR(255)\n" +
                     ");");
             db.execSQL("CREATE TABLE IF NOT EXISTS Geraet (\n" +
-                    "\tGeraeteID\tINTEGER PRIMARY KEY,\n" +
+                    "\tGeraeteID\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                     "\tGeraetename\tVARCHAR(255) NOT NULL,\n" +
                     "\txKoordinate\tINTEGER,\n" +
                     "\tyKoordinate\tINTEGER,\n" +
@@ -43,7 +43,7 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
                     "\tFOREIGN KEY(Raumname) REFERENCES Raum(Raumname)\n" +
                     ");");
             db.execSQL("CREATE TABLE IF NOT EXISTS Ticket (\n" +
-                    "\tTicketID\tINTEGER PRIMARY KEY,\n" +
+                    "\tTicketID\tINTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                     "\tStatus\tVARCHAR(255),\n" +
                     "\tGeraeteID\tINTEGER,\n" +
                     "\tFehlername\tVARCHAR(255),\n" +
@@ -60,22 +60,28 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT INTO RAUM VALUES ('C013', 'Herr Mustermann');");
             db.execSQL("INSERT INTO RAUM VALUES ('C006', 'Frau Doe');\n");
 
-            db.execSQL("INSERT INTO Geraet VALUES (11, 'PC-11', 1, 1, 'C025')");
-            db.execSQL("INSERT INTO Geraet VALUES (12, 'PC-12', 1, 2, 'C025')");
-            db.execSQL("INSERT INTO Geraet VALUES (22, 'PC-22', 2, 2, 'C025')");
-            db.execSQL("INSERT INTO Geraet VALUES (21, 'PC-21', 2, 1, 'C025')");
+            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-11', 1, 1, 'C025')");
+            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-12', 1, 2, 'C025')");
+            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-22', 2, 2, 'C025')");
+            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-21', 2, 1, 'C025')");
 
-            db.execSQL("INSERT INTO Geraet VALUES (14, 'PC-14', 1, 1, 'C006')");
-            db.execSQL("INSERT INTO Geraet VALUES (15, 'PC-15', 1, 2, 'C006')");
-            db.execSQL("INSERT INTO Geraet VALUES (24, 'PC-24', 2, 2, 'C006')");
-            db.execSQL("INSERT INTO Geraet VALUES (25, 'PC-25', 2, 1, 'C006')");
+            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-11', 1, 1, 'C006')");
+            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-12', 1, 2, 'C006')");
+            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-22', 2, 2, 'C006')");
+            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-21', 2, 1, 'C006')");
 
-            db.execSQL("INSERT INTO Geraet VALUES (55, 'PC-55', 1, 1, 'C013')");
-            db.execSQL("INSERT INTO Geraet VALUES (56, 'PC-56', 1, 2, 'C013')");
-            db.execSQL("INSERT INTO Geraet VALUES (65, 'PC-65', 2, 2, 'C013')");
-            db.execSQL("INSERT INTO Geraet VALUES (66, 'PC-66', 2, 1, 'C013')");
+            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-11', 1, 1, 'C013')");
+            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-12', 1, 2, 'C013')");
+            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-22', 2, 2, 'C013')");
+            db.execSQL("INSERT INTO Geraet VALUES ( 'PC-21', 2, 1, 'C013')");
 
+            db.execSQL("INSERT INTO Standardfehler VALUES ('Hardware defekt', 'Hardware Fehler (z.B. Maus, Monitor, Tastatur defekt)', 'normal')");
+            db.execSQL("INSERT INTO Standardfehler VALUES ('Software defekt', 'Software Fehler (z.B. Windows startet nicht, Bluescreen', 'normal')");
+            db.execSQL("INSERT INTO Standardfehler VALUES ('Performance Probleme', 'Performance Probleme (z.B. Unverhältnismäßige  Ladezeiten)', 'niedrig')");
+            db.execSQL("INSERT INTO Standardfehler VALUES ('Netzwerk Fehler', 'Netzwerk Fehler (z..B. kein Zugriff auf Intranet oder Internet)', 'hoch')");
+            db.execSQL("INSERT INTO Standardfehler VALUES ('Unbekannter Fehler', '', 'hoch')");
 
+            db.execSQL("INSERT INTO Ticket VALUES ('', 'Offen', 1, 'Hardware defekt')");
 
         } catch (Exception e) {
             Log.d(LOG_TAG, "Tabellen konnten nicht erzeugt werden.");
