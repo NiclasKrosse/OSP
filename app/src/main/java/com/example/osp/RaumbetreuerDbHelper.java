@@ -20,10 +20,10 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
         String raumeName = "raumName";
         String raumBetreuer = "raumBetreuer";
         try {
-            db.execSQL("CREATE TABLE "+ tableName +
-                    " ("+raumeName+" VARCHAR(255) PRIMARY KEY, "+raumBetreuer+" VARCHAR(255));"); // sql script
+            db.execSQL("CREATE TABLE " + tableName +
+                    " (" + raumeName + " VARCHAR(255) PRIMARY KEY, " + raumBetreuer + " VARCHAR(255));"); // sql script
         } catch (Exception e) {
-
+            Log.d(LOG_TAG, "Tabelle: " + tableName + " konnte nicht erzeugt werden.");
         }
     }
 

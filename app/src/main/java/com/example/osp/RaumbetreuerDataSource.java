@@ -1,9 +1,14 @@
 package com.example.osp;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import com.example.osp.data.pojo.Geraet;
+import com.example.osp.data.pojo.Raum;
+import com.example.osp.data.pojo.Ticket;
 
-import com.example.osp.RaumbetreuerDbHelper;
+import java.lang.reflect.Array;
 
 public class RaumbetreuerDataSource {
     private SQLiteDatabase database;
@@ -14,5 +19,64 @@ public class RaumbetreuerDataSource {
         database = dbHelper.getWritableDatabase();
     }
 
+    public void insertRaum(Raum raum) {
+        ContentValues values = new ContentValues();
+        values.put("Raumname", raum.raumName);
+        values.put("Raumbetreuer", raum.raumBetreuer);
 
+        database.insert("Raum", null, values);
+    }
+
+    public void insertGeraet(Geraet geraet) {
+        ContentValues values = new ContentValues();
+        values.put("Gerätename", geraet.geraeteName);
+        values.put("Gerätenummer", geraet.id);
+        values.put("YKoordinate", geraet.yKoordinate);
+        values.put("XKoordinate", geraet.xKoordinate);
+        values.put("Raumename", geraet.raumName);
+
+        database.insert("Geraet", null, values);
+    }
+
+    public void insertTicket(Ticket ticket) {
+        ContentValues values = new ContentValues();
+        values.put("TicketID", ticket.ticketID);
+        values.put("Fehlername", ticket.fehlerName);
+        values.put("Gerätenummer", ticket.geraeteNummer);
+        values.put("Status", ticket.status);
+    }
+
+    public Raum selectRaum(String name){
+        Cursor c = database.rawQuery("SELECT * FROM Raum WHERE Raumname = ?", new String[]{name});
+        if (c.moveToFirst()){
+
+                String raumName = c.getString(0);
+                String raumBetreuer = c.getString(1);
+
+            return new Raum(raumName, raumBetreuer);
+        }
+        return null;
+    }
+
+    public Raum[] selectRaeume() {
+        int counter = 0;
+        Cursor c = database.rawQuery("SELECT COUNT(name) FROM Raum", null);
+        if (c.moveToFirst()){
+            int groesse = c.getInt(0);
+            Raum[] raeume = new Raum[groesse];
+
+            Cursor c1 = database.rawQuery("SELECT * FROM Raum", null);
+            if (c1.moveToFirst()){
+                do {
+                    String column1 = c1.getString(0);
+                    String column2 = c1.getString(1);
+
+                    Raum raum = new Raum(column1, column2);
+                    raeume[counter] = raum;
+                    counter++;
+                } while(c.moveToNext());
+            }
+        }
+        return null;
+    }
 }
