@@ -35,6 +35,16 @@
 
     <TableRow
         android:layout_width="match_parent"
+        android:layout_height="38dp" >
+
+        <Spinner
+            android:id="@+id/spinner_defaultcases"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
         android:layout_height="297dp">
 
         <MultiAutoCompleteTextView
@@ -42,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="top"
+            android:editable="false"
             android:gravity="top"
             android:paddingLeft="8dp" />
     </TableRow>

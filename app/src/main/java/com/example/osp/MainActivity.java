@@ -39,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
       ListView nView = findViewById(R.id.listview_rooms);
 
       RaumbetreuerDataSource nSrc = new RaumbetreuerDataSource(this);
-      Raum raum = new Raum("UA02", "Frau Riemann");
-      nSrc.insertRaum(raum);
-      nSrc.insertRaum(new Raum("C002","Herr Jansen"));
+
       Raum[] raeume = nSrc.selectRaeume();
 
       //Variante 1, Nur Raumnummern, Okay da eindeutig
@@ -50,11 +48,6 @@ public class MainActivity extends AppCompatActivity {
           nDataset[i] = raeume[i].raumName;
       }
       nView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nDataset));
-
-      //Variante 2, So wie es in der DB stehen wird
-      //Todo Raum Dataset
-/*      Raum[] nRooms = {new Raum("C001","Herr Jansen"),new Raum("C002","Herr Jansen"),new Raum("UA02","Frau Riemann")};
-      nView.setAdapter(new ArrayAdapter<Raum>(this, android.R.layout.simple_list_item_1,nRooms));*/
 
       nView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
           @Override

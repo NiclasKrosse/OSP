@@ -58,22 +58,18 @@ public class Activity_RoomDetail extends AppCompatActivity {
 
         //todo Durch DB Daten ersetzten
         RaumbetreuerDataSource nRbDatasource = new RaumbetreuerDataSource(this);
-
+/*
         nRbDatasource.insertGeraet(new Geraet(100,1,1,mRoomNumber,"PC01"));
         nRbDatasource.insertGeraet(new Geraet(200,1,2,mRoomNumber,"PC02"));
         nRbDatasource.insertGeraet(new Geraet(300,1,3,mRoomNumber,"PC03"));
         nRbDatasource.insertGeraet(new Geraet(400,1,4,mRoomNumber,"PC04"));
-        nRbDatasource.insertGeraet(new Geraet(500,1,5,mRoomNumber,"PC05"));
+        nRbDatasource.insertGeraet(new Geraet(500,1,5,mRoomNumber,"PC05"));*/
 
-
-
-        List<Geraet> nDevices = new ArrayList<Geraet>();
-          nDevices.add(new Geraet(100,1,1,mRoomNumber,"PC01"));
-
+        Geraet[] geraete = nRbDatasource.selectGeraete(mRoomNumber);
         List<String> nDeviceList = new ArrayList<String>();
-        for (int i = 0; i<= nDevices.size() -1; i++)
-        {
-            nDeviceList.add(nDevices.get(i).geraeteName);
+        for(int i = 0; i < geraete.length; i++){
+            nDeviceList.add(geraete[i].geraeteName);
+
         }
 
         nView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nDeviceList));

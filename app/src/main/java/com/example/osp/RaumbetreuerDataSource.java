@@ -29,11 +29,11 @@ public class RaumbetreuerDataSource {
 
     public void insertGeraet(Geraet geraet) {
         ContentValues values = new ContentValues();
-        values.put("Gerätename", geraet.geraeteName);
-        values.put("Gerätenummer", geraet.id);
+        values.put("Geraetename", geraet.geraeteName);
+        values.put("Geraetenummer", geraet.id);
         values.put("YKoordinate", geraet.yKoordinate);
         values.put("XKoordinate", geraet.xKoordinate);
-        values.put("Raumename", geraet.raumName);
+        values.put("Raumname", geraet.raumName);
 
         database.insert("Geraet", null, values);
     }
@@ -60,7 +60,7 @@ public class RaumbetreuerDataSource {
 
     public Raum[] selectRaeume() {
         int counter = 0;
-        Cursor c = database.rawQuery("SELECT COUNT(raumName) FROM Raum", null);
+        Cursor c = database.rawQuery("SELECT COUNT(Raumname) FROM Raum", null);
         if (c.moveToFirst()){
             int groesse = c.getInt(0);
             Raum[] raeume = new Raum[groesse];
@@ -88,14 +88,15 @@ public class RaumbetreuerDataSource {
         return null;
     }
 
-    public Geraet[] selectGeraete() {
+    public Geraet[] selectGeraete(String raumname)
+    {
         int counter = 0;
-        Cursor c = database.rawQuery("SELECT COUNT(id) FROM Geraet", null);
+        Cursor c = database.rawQuery("SELECT COUNT(GeraeteID) FROM Geraet WHERE raumname = ?", new String[] {raumname});
         if(c.moveToFirst()){
             int groesse = c.getInt(0);
             Geraet[] geraete = new Geraet[groesse];
 
-            Cursor c1 = database.rawQuery("SELECT * FROM Geraet", null);
+            Cursor c1 = database.rawQuery("SELECT * FROM Geraet where raumname = ?", new String[] {raumname});
             if(c1.moveToFirst()) {
                 do{
                     int id = c1.getInt(0);
@@ -107,10 +108,14 @@ public class RaumbetreuerDataSource {
                     Geraet geraet = new Geraet(id, x, y, raum, name);
                     geraete[counter] = geraet;
                     counter++;
-                } while (c.moveToNext());
+                } while (c1.moveToNext());
                 return geraete;
             }
         }
         return null;
+    }
+
+    public void oncreate() {
+        //dbHelper.onCreate(this);
     }
 }

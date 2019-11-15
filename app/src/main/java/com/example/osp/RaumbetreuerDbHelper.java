@@ -5,16 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.StringReader;
-import java.util.Scanner;
-
 public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
     private static final String LOG_TAG = RaumbetreuerDbHelper.class.getSimpleName();
 
     public RaumbetreuerDbHelper(Context context) {
-        super(context, "raumbetreuer.db", null, 1);
+        super(context, "raumbetreuer-test.db", null, 1);
         Log.d(LOG_TAG, "DbHelper hat die Datenbank: " + getDatabaseName() + " erzeugt.");
 
     }
@@ -70,15 +65,17 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
             db.execSQL("INSERT INTO Geraet VALUES (22, 'PC-22', 2, 2, 'C025')");
             db.execSQL("INSERT INTO Geraet VALUES (21, 'PC-21', 2, 1, 'C025')");
 
-            db.execSQL("INSERT INTO Geraet VALUES (11, 'PC-11', 1, 1, 'C006')");
-            db.execSQL("INSERT INTO Geraet VALUES (12, 'PC-12', 1, 2, 'C006')");
-            db.execSQL("INSERT INTO Geraet VALUES (22, 'PC-22', 2, 2, 'C006')");
-            db.execSQL("INSERT INTO Geraet VALUES (21, 'PC-21', 2, 1, 'C006')");
+            db.execSQL("INSERT INTO Geraet VALUES (14, 'PC-14', 1, 1, 'C006')");
+            db.execSQL("INSERT INTO Geraet VALUES (15, 'PC-15', 1, 2, 'C006')");
+            db.execSQL("INSERT INTO Geraet VALUES (24, 'PC-24', 2, 2, 'C006')");
+            db.execSQL("INSERT INTO Geraet VALUES (25, 'PC-25', 2, 1, 'C006')");
 
-            db.execSQL("INSERT INTO Geraet VALUES (11, 'PC-11', 1, 1, 'C013')");
-            db.execSQL("INSERT INTO Geraet VALUES (12, 'PC-12', 1, 2, 'C013')");
-            db.execSQL("INSERT INTO Geraet VALUES (22, 'PC-22', 2, 2, 'C013')");
-            db.execSQL("INSERT INTO Geraet VALUES (21, 'PC-21', 2, 1, 'C013')");
+            db.execSQL("INSERT INTO Geraet VALUES (55, 'PC-55', 1, 1, 'C013')");
+            db.execSQL("INSERT INTO Geraet VALUES (56, 'PC-56', 1, 2, 'C013')");
+            db.execSQL("INSERT INTO Geraet VALUES (65, 'PC-65', 2, 2, 'C013')");
+            db.execSQL("INSERT INTO Geraet VALUES (66, 'PC-66', 2, 1, 'C013')");
+
+
 
         } catch (Exception e) {
             Log.d(LOG_TAG, "Tabellen konnten nicht erzeugt werden.");

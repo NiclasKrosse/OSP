@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import android.widget.Button;
@@ -156,6 +157,23 @@ public class Activity_TicketDetail extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 //Farben für die Prio anzeigen
+                ImageView nImageView = findViewById(R.id.imageView_priocolor);
+
+                switch (position)
+                {
+                    //Niedrig
+                    case 0:
+                        nImageView.setImageResource(R.color.status_erledigt);
+                        break;
+                    //Normal
+                    case 1:
+                        nImageView.setImageResource(R.color.status_inBearbeitung);
+                        break;
+                    //Hock
+                    case 2:
+                        nImageView.setImageResource(R.color.status_offen);
+                        break;
+                }
             }
 
             @Override
@@ -165,6 +183,13 @@ public class Activity_TicketDetail extends AppCompatActivity {
             }
         });
 
+
+        //Standardfälle
+        Spinner nDefaultCaseSpinner = findViewById(R.id.spinner_defaultcases);
+
+        //todo
+        //ArrayAdapter<String> nDefaultCaseAdapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,new ArrayList( {"Hallo","Schön"}));
+        //nDefaultCaseSpinner.setAdapter(nDefaultCaseAdapter);
     }
 
     private void SaveTicket()

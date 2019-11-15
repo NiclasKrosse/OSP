@@ -1,4 +1,3 @@
-BEGIN TRANSACTION;
 CREATE TABLE IF NOT EXISTS Standardfehler (
 	Fehlername VARCHAR(255) PRIMARY KEY,
 	Fehlerbeschreibung VARCHAR(255),
@@ -8,9 +7,9 @@ CREATE TABLE IF NOT EXISTS Raum (
 	Raumname	VARCHAR(255) PRIMARY KEY,
 	Raumbetreuer	VARCHAR(255),
 );
-CREATE TABLE IF NOT EXISTS Geraete (
-	GeräteID	INTEGER PRIMARY KEY,
-	Gerätename	VARCHAR(255) NOT NULL,
+CREATE TABLE IF NOT EXISTS Geraet (
+	GeraeteID	INTEGER PRIMARY KEY,
+	Geraetename	VARCHAR(255) NOT NULL,
 	xKoordinate	INTEGER,
 	yKoordinate	INTEGER,
 	Raumname	VARCHAR(255),
@@ -27,7 +26,7 @@ CREATE TABLE IF NOT EXISTS Inventar (
 CREATE TABLE IF NOT EXISTS Ticket (
 	Ticket-ID	INTEGER PRIMARY KEY,
 	Status	VARCHAR(255),
-	GeräteID	INTEGER,
+	GeraeteID	INTEGER,
 	Fehlername	VARCHAR(255),
 	FOREIGN KEY (GeräteID) REFERENCES Geräte(GeräteID)
 	FOREIGN KEY(Fehlername) REFERENCES Standardfehler(Fehlername)
@@ -38,9 +37,9 @@ CREATE TABLE IF NOT EXISTS Benutzer (
 	Passwort	VARCHAR(255)
 );
 
-INSERT INTO RAUM VALUES ('C025', 'Herr Jansen');
-INSERT INTO RAUM VALUES ('C013', 'Herr Mustermann');
-INSERT INTO RAUM VALUES ('C006', 'Frau Doe');
+INSERT INTO Raum VALUES ('C025', 'Herr Jansen');
+INSERT INTO Raum VALUES ('C013', 'Herr Mustermann');
+INSERT INTO Raum VALUES ('C006', 'Frau Doe');
 
 INSERT INTO Geraet VALUES (11, 'PC-11', 1, 1, 'C025')
 INSERT INTO Geraet VALUES (12, 'PC-12', 1, 2, 'C025')
