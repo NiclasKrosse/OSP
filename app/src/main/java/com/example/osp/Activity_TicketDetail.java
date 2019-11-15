@@ -60,11 +60,11 @@ public class Activity_TicketDetail extends AppCompatActivity {
 
             //Raumnummer, Datum, ... setzen
             mDate = new Date();
-            DateFormat nFormat = new SimpleDateFormat("dd.mm.yyyy");
+            DateFormat nFormat = new SimpleDateFormat("dd.MM.yyyy");
 
 
             TextView nTitleView = findViewById(R.id.textVvew_ticketdata);
-            nTitleView.setText("Datum: "+ nFormat.format( mDate )+" |Raum: "+ mRoomNumber +" | "+mPcNumber);
+            nTitleView.setText("Datum: "+ nFormat.format( mDate )+" | Raum: "+ mRoomNumber +" | "+mPcNumber);
 
             //todo
             //textVvew_ticketdata
