@@ -194,7 +194,7 @@ public class Activity_TicketDetail extends AppCompatActivity {
 
     private void SaveTicket()
     {
-
+        RaumbetreuerDataSource raumbetreuerDataSource = new RaumbetreuerDataSource(this);
         //Steuerelemente laden
         AutoCompleteTextView nDescriptionView = findViewById(R.id. multiAutoCompleteTextView_ErrorDescription);
         Spinner nStatusSpinner = findViewById(R.id.spinner_status);
@@ -208,5 +208,6 @@ public class Activity_TicketDetail extends AppCompatActivity {
 
         //Ticket anlegen
         Ticket nTicketToSave = new Ticket("100",nStatus,nPc.id,nError);
+        raumbetreuerDataSource.insertTicket(nTicketToSave);
     }
 }

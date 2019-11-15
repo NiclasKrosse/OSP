@@ -131,4 +131,28 @@ public class RaumbetreuerDataSource {
         }
         return null;
     }
+
+    public Ticket[] selectTickets() {
+        int counter = 0;
+        Cursor c = database.rawQuery("SELECT COUNT(TicketID) FROM Ticket", null);
+        if(c.moveToFirst()) {
+            int groesse = c.getInt(0);
+            Ticket[] tickets = new Ticket[groesse];
+
+            Cursor c1 = database.rawQuery("SELECT * FROM Ticket", null);
+            if(c1.moveToFirst()){
+                do{
+                    String id = c1.getString(0);
+                    String status = c1.getString(1);
+                    int gID = c1.getInt(2);
+                    String fehlername = c1.getString(3);
+
+                    Ticket ticket = new Ticket(id, status, gID, fehlername);
+                    tickets[counter] = ticket;
+                } while (c1.moveToNext());
+                return tickets;
+            }
+        }
+        return null;
+    }
 }
