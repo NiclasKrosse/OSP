@@ -22,15 +22,12 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String tableName = "Raum";
-        String raumeName = "raumName";
-        String raumBetreuer = "raumBetreuer";
         try {
             String content = new Scanner(new File("src/main/res/raumbetreuer.sql")).useDelimiter("\\Z").next();
             System.out.println(content);
             db.execSQL(content);
         } catch (Exception e) {
-            Log.d(LOG_TAG, "Tabelle: " + tableName + " konnte nicht erzeugt werden.");
+            Log.d(LOG_TAG, "Tabellen konnten nicht erzeugt werden.");
         }
     }
 
