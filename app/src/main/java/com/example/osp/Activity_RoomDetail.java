@@ -18,6 +18,7 @@ import java.util.List;
 public class Activity_RoomDetail extends AppCompatActivity {
 
     private String mRoomNumber;
+    private Geraet[] mGeratete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +54,15 @@ public class Activity_RoomDetail extends AppCompatActivity {
         ListView nView = findViewById(R.id.listview_pcs);
         RaumbetreuerDataSource nRbDatasource = new RaumbetreuerDataSource(this);
 
-        Geraet[] geraete = nRbDatasource.selectGeraete(mRoomNumber);
+        mGeratete = nRbDatasource.selectGeraete(mRoomNumber);
+
         List<String> nDeviceList = new ArrayList<String>();
-        if (geraete != null)
+        if (mGeratete != null)
         {
 
-            for(int i = 0; i < geraete.length; i++)
+            for(int i = 0; i < mGeratete.length; i++)
             {
-                nDeviceList.add(geraete[i].geraeteName);
+                nDeviceList.add(mGeratete[i].geraeteName);
 
             }
         }
@@ -75,8 +77,11 @@ public class Activity_RoomDetail extends AppCompatActivity {
             {
                 Intent intent = new Intent(Activity_RoomDetail.this,Activity_Ticketlist.class);
 
+
+
                 //Pc und Raum übergeben
                 intent.putExtra("pc_number",parent.getItemAtPosition(position).toString());
+                intent.putExtra("pc_id", mGeratete[position].id);
                 intent.putExtra("room_number",mRoomNumber);
                 //based on item add info to intent
                 startActivity(intent);

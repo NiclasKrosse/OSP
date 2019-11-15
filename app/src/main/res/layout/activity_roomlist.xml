@@ -41,9 +41,15 @@
         <ListView
             android:id="@+id/listview_rooms"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="493dp"
             android:visibility="visible"
             tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/button_callTicketlist"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            android:text="Ticketverwaltung" />
 
     </LinearLayout>
 

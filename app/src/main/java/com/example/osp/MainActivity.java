@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RaumbetreuerDataSource dataSource;
 
+    private int mRoomid;
+    private Raum[] mRooms;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +35,15 @@ public class MainActivity extends AppCompatActivity {
         dataSource = new RaumbetreuerDataSource(this);
 
         InitList();
+
+        Button nTicketButton = findViewById(R.id.button_callTicketlist);
+        nTicketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                CallTicketList();
+            }
+        });
     }
 
 
@@ -38,9 +51,10 @@ public class MainActivity extends AppCompatActivity {
   {
       ListView nView = findViewById(R.id.listview_rooms);
 
-      RaumbetreuerDataSource nSrc = new RaumbetreuerDataSource(this);
+      final RaumbetreuerDataSource nSrc = new RaumbetreuerDataSource(this);
 
-      Raum[] raeume = nSrc.selectRaeume();
+      final Raum[] raeume = nSrc.selectRaeume();
+      mRooms = raeume;
 
       //Variante 1, Nur Raumnummern, Okay da eindeutig
       String[] nDataset = new String[raeume.length];
@@ -53,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
           @Override
           public void onItemClick(AdapterView<?> parent, View view, int position, long id)
           {
+
+
               Intent intent = new Intent(MainActivity. this,Activity_RoomDetail.class);
 
               //Raumnummer übergeben
@@ -62,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
           }
       });
   }
+
+  private void CallTicketList()
+    {
+        Intent intent = new Intent(MainActivity.this, Activity_Ticketlist.class);
+        startActivity(intent);
+    }
 
 
 }
