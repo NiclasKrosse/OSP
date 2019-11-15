@@ -58,8 +58,9 @@ public class Activity_RoomDetail extends AppCompatActivity {
             {
                 Intent intent = new Intent(Activity_RoomDetail.this,Activity_Ticketlist.class);
 
-                //Pc übergeben
+                //Pc und Raum übergeben
                 intent.putExtra("pc_number",parent.getItemAtPosition(position).toString());
+                intent.putExtra("room_number",mRoomNumber);
                 //based on item add info to intent
                 startActivity(intent);
             }

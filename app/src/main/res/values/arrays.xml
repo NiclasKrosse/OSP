@@ -5,4 +5,18 @@
         <item name="c001">C001</item>
     </string-array>
 
+    <string-array name="Status">
+        <item>Offen</item>
+        <item>Geschlossen</item>
+        <item>Erledigt</item>
+        <item>In Bearbeitung</item>
+        <item>Wird Bearbeitet</item>
+        <item>Zurückgestellt</item>
+    </string-array>
+
+    <string-array name="Prio">
+        <item>Niedrig</item>
+        <item>Normal</item>
+        <item>Hoch</item>
+    </string-array>
 </resources>
