@@ -48,7 +48,7 @@ public class Activity_TicketDetail extends AppCompatActivity {
                         .split("\\s*,\\s*"));
                 String emailSubject = "TICKET FATALER FEHLER :o";
                 String emailBody = "Sorry, not sorry";
-                new MailingTask().execute(fromEmail,
+                new MailingTask(Activity_TicketDetail.this).execute(fromEmail,
                         fromPassword, toEmailList, emailSubject, emailBody);
             }
         });
