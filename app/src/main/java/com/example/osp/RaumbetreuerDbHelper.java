@@ -5,6 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.StringReader;
+import java.util.Scanner;
+
 public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
     private static final String LOG_TAG = RaumbetreuerDbHelper.class.getSimpleName();
 
@@ -21,8 +26,9 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
         String raumeName = "raumName";
         String raumBetreuer = "raumBetreuer";
         try {
-            db.execSQL("CREATE TABLE " + tableName +
-                    " (" + raumeName + " VARCHAR(255) PRIMARY KEY, " + raumBetreuer + " VARCHAR(255));"); // sql script
+            String content = new Scanner(new File("src/main/res/raumbetreuer.sql")).useDelimiter("\\Z").next();
+            System.out.println(content);
+            db.execSQL(content);
         } catch (Exception e) {
             Log.d(LOG_TAG, "Tabelle: " + tableName + " konnte nicht erzeugt werden.");
         }
