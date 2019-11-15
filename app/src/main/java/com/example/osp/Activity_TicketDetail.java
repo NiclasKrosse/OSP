@@ -104,7 +104,7 @@ public class Activity_TicketDetail extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
             {
-                //imageView_statuscolor
+                //Farben für die Status anzeigen
                 ImageView nImageView = findViewById(R.id.imageView_statuscolor);
 
                 switch (position)
@@ -151,6 +151,19 @@ public class Activity_TicketDetail extends AppCompatActivity {
         nPrioAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         nPrioSpinner.setAdapter(nPrioAdapter);
 
+        nPrioSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                //Farben für die Prio anzeigen
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+        });
 
     }
 

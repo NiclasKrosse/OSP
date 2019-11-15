@@ -94,8 +94,15 @@
 
         <Spinner
             android:id="@+id/spinner_prio"
-            android:layout_width="match_parent"
+            android:layout_width="367dp"
             android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/imageView_priocolor"
+            android:layout_width="43dp"
+            android:layout_height="24dp"
+            android:layout_gravity="left"
+            android:foregroundGravity="right" />
     </TableRow>
 
     <TableRow
