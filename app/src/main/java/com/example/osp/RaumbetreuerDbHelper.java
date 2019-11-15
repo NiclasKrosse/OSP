@@ -11,6 +11,7 @@ public class RaumbetreuerDbHelper extends SQLiteOpenHelper {
     public RaumbetreuerDbHelper(Context context) {
         super(context, "raumbetreuer.db", null, 1);
         Log.d(LOG_TAG, "DbHelper hat die Datenbank: " + getDatabaseName() + " erzeugt.");
+
     }
 
 

@@ -38,13 +38,12 @@
         android:layout_height="297dp">
 
         <MultiAutoCompleteTextView
-            android:id="@+id/multiAutoCompleteTextView2"
+            android:id="@+id/multiAutoCompleteTextView_ErrorDescription"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="top"
             android:gravity="top"
-            android:paddingLeft="8dp"
-            android:text="MultiAutoCompleteTextView" />
+            android:paddingLeft="8dp" />
     </TableRow>
 
     <TableRow
@@ -65,8 +64,15 @@
 
         <Spinner
             android:id="@+id/spinner_status"
-            android:layout_width="match_parent"
+            android:layout_width="368dp"
             android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/imageView_statuscolor"
+            android:layout_width="43dp"
+            android:layout_height="24dp"
+            android:layout_gravity="left"
+            android:foregroundGravity="right" />
     </TableRow>
 
     <TableRow
@@ -84,23 +90,12 @@
 
     <TableRow
         android:layout_width="match_parent"
-        android:layout_height="54dp">
+        android:layout_height="106dp">
 
         <Spinner
             android:id="@+id/spinner_prio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/button_escalateTicket"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Eskalieren" />
     </TableRow>
 
     <TableRow

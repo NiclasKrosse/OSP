@@ -3,8 +3,12 @@ package com.example.osp.mailing;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.util.Log;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+import javax.mail.MessagingException;
 
 public class MailingTask extends AsyncTask {
 
@@ -38,7 +42,7 @@ public class MailingTask extends AsyncTask {
             publishProgress("Email Sent.");
         } catch (Exception e) {
             publishProgress(e.getMessage());
-
+            Log.e("SendMailTask", e.getMessage(), e);
         }
         return null;
     }

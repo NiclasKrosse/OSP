@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.osp.data.pojo.Raum;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,19 +31,30 @@ public class MainActivity extends AppCompatActivity {
         dataSource = new RaumbetreuerDataSource(this);
 
         InitList();
-/*        ListView nView = findViewById(R.id.listview_rooms);
-        String[] nDataset = {"C001","C002","C003","C004","C005","B001"};//new String[5];
-
-        nView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nDataset));*/
     }
 
 
     private void InitList()
   {
       ListView nView = findViewById(R.id.listview_rooms);
-      String[] nDataset = {"C001","C002","C003","C004","C005","B001"};//new String[5];
 
+      RaumbetreuerDataSource nSrc = new RaumbetreuerDataSource(this);
+      Raum raum = new Raum("UA02", "Frau Riemann");
+      nSrc.insertRaum(raum);
+      nSrc.insertRaum(new Raum("C002","Herr Jansen"));
+      Raum[] raeume = nSrc.selectRaeume();
+
+      //Variante 1, Nur Raumnummern, Okay da eindeutig
+      String[] nDataset = new String[raeume.length];
+      for(int i = 0; i < raeume.length; i++) {
+          nDataset[i] = raeume[i].raumName;
+      }
       nView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nDataset));
+
+      //Variante 2, So wie es in der DB stehen wird
+      //Todo Raum Dataset
+/*      Raum[] nRooms = {new Raum("C001","Herr Jansen"),new Raum("C002","Herr Jansen"),new Raum("UA02","Frau Riemann")};
+      nView.setAdapter(new ArrayAdapter<Raum>(this, android.R.layout.simple_list_item_1,nRooms));*/
 
       nView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
           @Override

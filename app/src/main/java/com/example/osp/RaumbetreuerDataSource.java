@@ -60,7 +60,7 @@ public class RaumbetreuerDataSource {
 
     public Raum[] selectRaeume() {
         int counter = 0;
-        Cursor c = database.rawQuery("SELECT COUNT(name) FROM Raum", null);
+        Cursor c = database.rawQuery("SELECT COUNT(raumName) FROM Raum", null);
         if (c.moveToFirst()){
             int groesse = c.getInt(0);
             Raum[] raeume = new Raum[groesse];
@@ -74,8 +74,9 @@ public class RaumbetreuerDataSource {
                     Raum raum = new Raum(column1, column2);
                     raeume[counter] = raum;
                     counter++;
-                } while(c.moveToNext());
+                } while(c1.moveToNext());
             }
+            return raeume;
         }
         return null;
     }

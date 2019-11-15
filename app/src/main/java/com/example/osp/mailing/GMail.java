@@ -12,11 +12,12 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+
 import android.util.Log;
 
 public class GMail {
 
-    final String emailPort = "587";// gmail's smtp port
+    final String emailPort = "587";// gmail's smtp port   SSL port:465
     final String smtpAuth = "true";
     final String starttls = "true";
     final String emailHost = "smtp.gmail.com";
@@ -47,6 +48,7 @@ public class GMail {
         emailProperties.put("mail.smtp.port", emailPort);
         emailProperties.put("mail.smtp.auth", smtpAuth);
         emailProperties.put("mail.smtp.starttls.enable", starttls);
+        emailProperties.put("mail.smtp.user", this.fromEmail);
         Log.i("GMail", "Mail server properties set.");
     }
 

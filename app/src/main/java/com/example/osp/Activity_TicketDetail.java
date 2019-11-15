@@ -2,15 +2,18 @@ package com.example.osp;
 
 import android.os.Bundle;
 
+import com.example.osp.data.pojo.Geraet;
+import com.example.osp.data.pojo.Ticket;
 import com.example.osp.mailing.MailingTask;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import android.widget.Button;
 
 import java.util.Arrays;
@@ -31,7 +35,7 @@ public class Activity_TicketDetail extends AppCompatActivity {
     private String mIsNew;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__ticket_detail);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -50,17 +54,16 @@ public class Activity_TicketDetail extends AppCompatActivity {
                 String emailBody = "Sorry, not sorry";
                 new MailingTask(Activity_TicketDetail.this).execute(fromEmail,
                         fromPassword, toEmailList, emailSubject, emailBody);
+                SaveTicket();
             }
         });
-        try
-        {
+
+        try {
             //Laden
             mRoomNumber = getIntent().getSerializableExtra("room_number").toString();
             mPcNumber = getIntent().getSerializableExtra("pc_number").toString();
-            mIsNew =  getIntent().getSerializableExtra("is_new").toString();
-        }
-        catch (Exception ex)
-        {
+            mIsNew = getIntent().getSerializableExtra("is_new").toString();
+        } catch (Exception ex) {
             Toast.makeText(getApplicationContext(), "Ticket konnte nicht initialisiert werden", Toast.LENGTH_LONG).show();
         }
 
@@ -76,17 +79,11 @@ public class Activity_TicketDetail extends AppCompatActivity {
             //Titelleiste
             setTitle("Neues Ticket");
 
-            //Raumnummer, Datum, ... setzen
+            //Zweite Titelzeile setzten
             mDate = new Date();
             DateFormat nFormat = new SimpleDateFormat("dd.MM.yyyy");
-
-
             TextView nTitleView = findViewById(R.id.textVvew_ticketdata);
-            nTitleView.setText("Datum: "+ nFormat.format( mDate )+" | Raum: "+ mRoomNumber +" | "+mPcNumber);
-
-            //todo
-            //textVvew_ticketdata
-            //Datum: dd.mm.yyyy |Raum: CXXX | PC 01
+            nTitleView.setText("Datum: " + nFormat.format(mDate) + " | Raum: " + mRoomNumber + " | " + mPcNumber);
         }
     }
 
@@ -102,6 +99,48 @@ public class Activity_TicketDetail extends AppCompatActivity {
         nStatusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         nStatusSpinner.setAdapter(nStatusAdapter);
 
+        nStatusSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+        {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id)
+            {
+                //imageView_statuscolor
+                ImageView nImageView = findViewById(R.id.imageView_statuscolor);
+
+                switch (position)
+                {
+                    //Offen
+                    case 0:
+                        nImageView.setImageResource( R.color.status_offen);
+                        break;
+                    case 1:
+                        nImageView.setImageResource(R.color.status_geschlossen);
+                        break;
+                    case 2:
+                        nImageView.setImageResource(R.color.status_erledigt);
+                        break;
+                    case 3:
+                        nImageView.setImageResource(R.color.status_inBearbeitung);
+                        break;
+                    case 4:
+                        nImageView.setImageResource(R.color.status_inBearbeitung);
+                        break;
+                    case 5:
+                        nImageView.setImageResource(R.color.status_geschlossen);
+                        break;
+
+                    default:
+                        nImageView.setImageResource(R.color.status_geschlossen);
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+        });
+
         //spinner_prio
         //Prioritäten in das Steuerelement laden
         Spinner nPrioSpinner = findViewById(R.id.spinner_prio);
@@ -112,5 +151,24 @@ public class Activity_TicketDetail extends AppCompatActivity {
         nPrioAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         nPrioSpinner.setAdapter(nPrioAdapter);
 
+
+    }
+
+    private void SaveTicket()
+    {
+
+        //Steuerelemente laden
+        AutoCompleteTextView nDescriptionView = findViewById(R.id. multiAutoCompleteTextView_ErrorDescription);
+        Spinner nStatusSpinner = findViewById(R.id.spinner_status);
+
+        //Variablen setzen
+        String nError = nDescriptionView.getText().toString();
+        String nStatus =nStatusSpinner.getSelectedItem().toString();
+
+        //Todo Laden
+        Geraet nPc = new Geraet(100,1,1,mRoomNumber,mPcNumber);
+
+        //Ticket anlegen
+        Ticket nTicketToSave = new Ticket("100",nStatus,nPc.id,nError);
     }
 }
