@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.osp.data.pojo.Ticket;
+
 
 public class Activity_Ticketlist extends AppCompatActivity
 {
@@ -41,18 +43,24 @@ public class Activity_Ticketlist extends AppCompatActivity
 
 
         //Liste
-        InitList();
+        InitList(mPcNumber);
 
         //Neues Ticket erstellen
         InitCreateTicketButton(nSucess);
 
     }
 
-    private void  InitList()
+    private void  InitList(String mPcNumber)
     {
         //Liste mit einfachen Dummy-Daten befüllen
         ListView nView = findViewById(R.id.listview_tickets);
-        String [] nDataset = {"#123","#456","#789"};
+        RaumbetreuerDataSource raumbetreuerDataSource = new RaumbetreuerDataSource(this);
+        Ticket[] tickets = raumbetreuerDataSource.selectTickets(Integer.parseInt(mPcNumber));
+
+        String[] nDataset = new String[tickets.length];
+        for(int i=0; i<tickets.length; i++){
+            nDataset[i] = "Ticket "+ tickets[i].ticketID;
+        }
         nView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nDataset));
     }
 

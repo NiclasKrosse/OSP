@@ -132,14 +132,14 @@ public class RaumbetreuerDataSource {
         return null;
     }
 
-    public Ticket[] selectTickets() {
+    public Ticket[] selectTickets(int GeraeteId) {
         int counter = 0;
-        Cursor c = database.rawQuery("SELECT COUNT(TicketID) FROM Ticket", null);
+        Cursor c = database.rawQuery("SELECT COUNT(TicketID) FROM Ticket where GeraeteID = ?", new String[] {Integer.toString(GeraeteId)});
         if(c.moveToFirst()) {
             int groesse = c.getInt(0);
             Ticket[] tickets = new Ticket[groesse];
 
-            Cursor c1 = database.rawQuery("SELECT * FROM Ticket", null);
+            Cursor c1 = database.rawQuery("SELECT * FROM Ticket where GeraeteID = ?", new String[] {Integer.toString(GeraeteId)});
             if(c1.moveToFirst()){
                 do{
                     String id = c1.getString(0);
