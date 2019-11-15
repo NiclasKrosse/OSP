@@ -17,6 +17,7 @@ public class Activity_Ticketlist extends AppCompatActivity
 {
     private String mPcNumber;
     private String mRoomNumber;
+    private String mPcId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -31,6 +32,7 @@ public class Activity_Ticketlist extends AppCompatActivity
             //Überschrift auf die Nummer des gewählten PCs setzen und Raumnummer laden
             mPcNumber = getIntent().getSerializableExtra("pc_number").toString();
             mRoomNumber= getIntent().getSerializableExtra("room_number").toString();
+            mPcId= getIntent().getSerializableExtra("pc_id").toString();
             setTitle("Tickets zu " + mPcNumber);
         }
         //Todo Beim verlassen eines Tickets
@@ -52,16 +54,30 @@ public class Activity_Ticketlist extends AppCompatActivity
 
     private void  InitList(String mPcNumber)
     {
+
+
         //Liste mit einfachen Dummy-Daten befüllen
         ListView nView = findViewById(R.id.listview_tickets);
         RaumbetreuerDataSource raumbetreuerDataSource = new RaumbetreuerDataSource(this);
-        Ticket[] tickets = raumbetreuerDataSource.selectTickets(Integer.parseInt(mPcNumber));
-
-        String[] nDataset = new String[tickets.length];
-        for(int i=0; i<tickets.length; i++){
-            nDataset[i] = "Ticket "+ tickets[i].ticketID;
+        Ticket[] tickets;
+        if(mPcId != null) {
+            tickets = raumbetreuerDataSource.selectTickets(Integer.parseInt(mPcId));
+        } else {
+            tickets = raumbetreuerDataSource.selectTickets();
         }
-        nView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nDataset));
+
+
+        if (tickets != null)
+        {
+            String[] nDataset = new String[tickets.length];
+
+            for(int i=0; i<tickets.length; i++)
+            {
+                nDataset[i] = "Ticket "+ tickets[i].ticketID;
+            }
+            nView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nDataset));
+        }
+
     }
 
     private void InitCreateTicketButton(Boolean sucess)

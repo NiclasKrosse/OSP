@@ -33,6 +33,8 @@ public class Activity_TicketDetail extends AppCompatActivity {
 
     private String mRoomNumber;
     private String mPcNumber;
+    private  int mPcId;
+
     private Date mDate;
     private String mIsNew;
 
@@ -49,7 +51,8 @@ public class Activity_TicketDetail extends AppCompatActivity {
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fromEmail = "gso.raumbetreuer.app@gmail.com";
+                //TODO EMAIL AUTH
+      /*          String fromEmail = "gso.raumbetreuer.app@gmail.com";
                 String fromPassword = "Raumbetreuer";
                 String toEmails = "riemann-isabel@gmx.de";
                 List toEmailList = Arrays.asList(toEmails
@@ -57,7 +60,7 @@ public class Activity_TicketDetail extends AppCompatActivity {
                 String emailSubject = "TICKET FATALER FEHLER :o";
                 String emailBody = "Sorry, not sorry";
                 new MailingTask(Activity_TicketDetail.this).execute(fromEmail,
-                        fromPassword, toEmailList, emailSubject, emailBody);
+                        fromPassword, toEmailList, emailSubject, emailBody);*/
                 SaveTicket();
             }
         });
