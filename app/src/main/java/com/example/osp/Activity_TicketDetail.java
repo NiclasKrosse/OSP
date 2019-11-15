@@ -193,8 +193,10 @@ public class Activity_TicketDetail extends AppCompatActivity {
         final Spinner nDefaultCaseSpinner = findViewById(R.id.spinner_defaultcases);
 
         //todo
+        RaumbetreuerDataSource nSrc = new RaumbetreuerDataSource(this);
+
         //Standarfehlerarray
-        Standardfehler[] nArr = {new Standardfehler("","","Normal"),new Standardfehler("Kurztext","Langtext","Hoch")};
+        Standardfehler[] nArr = nSrc.selectStandardfehler();//{new Standardfehler("","","Normal"),new Standardfehler("Kurztext","Langtext","Hoch")};
 
         String[] nLiszOfCaptions = new String[nArr.length];
         //Kurztextarray

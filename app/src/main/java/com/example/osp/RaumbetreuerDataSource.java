@@ -125,6 +125,7 @@ public class RaumbetreuerDataSource {
 
                     Standardfehler f = new Standardfehler(name, beschreibung, prio);
                     fehler[counter] = f;
+                    counter++;
                 } while (c1.moveToNext());
                 return fehler;
             }
@@ -149,6 +150,7 @@ public class RaumbetreuerDataSource {
 
                     Ticket ticket = new Ticket(id, status, gID, fehlername);
                     tickets[counter] = ticket;
+                    counter++;
                 } while (c1.moveToNext());
                 return tickets;
             }
