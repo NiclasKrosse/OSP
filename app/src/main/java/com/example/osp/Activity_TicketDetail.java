@@ -3,6 +3,7 @@ package com.example.osp;
 import android.os.Bundle;
 
 import com.example.osp.data.pojo.Geraet;
+import com.example.osp.data.pojo.Standardfehler;
 import com.example.osp.data.pojo.Ticket;
 import com.example.osp.mailing.MailingTask;
 
@@ -34,6 +35,8 @@ public class Activity_TicketDetail extends AppCompatActivity {
     private String mPcNumber;
     private Date mDate;
     private String mIsNew;
+
+    private Standardfehler[] mDefaultCases;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -152,6 +155,8 @@ public class Activity_TicketDetail extends AppCompatActivity {
         nPrioAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         nPrioSpinner.setAdapter(nPrioAdapter);
 
+
+
         nPrioSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
@@ -185,11 +190,51 @@ public class Activity_TicketDetail extends AppCompatActivity {
 
 
         //Standardfälle
-        Spinner nDefaultCaseSpinner = findViewById(R.id.spinner_defaultcases);
+        final Spinner nDefaultCaseSpinner = findViewById(R.id.spinner_defaultcases);
 
         //todo
-        //ArrayAdapter<String> nDefaultCaseAdapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,new ArrayList( {"Hallo","Schön"}));
-        //nDefaultCaseSpinner.setAdapter(nDefaultCaseAdapter);
+        //Standarfehlerarray
+        Standardfehler[] nArr = {new Standardfehler("","","Normal"),new Standardfehler("Kurztext","Langtext","Hoch")};
+
+        String[] nLiszOfCaptions = new String[nArr.length];
+        //Kurztextarray
+        for (int i = 0; i < nArr.length;i++)
+        {
+            nLiszOfCaptions[i] = nArr[i].fehlerName;
+        }
+
+        ArrayAdapter<String> nDefaultCaseAdapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,nLiszOfCaptions);
+        nDefaultCaseSpinner.setAdapter(nDefaultCaseAdapter);
+
+        mDefaultCases = nArr;
+
+        nDefaultCaseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+
+                if (mDefaultCases != null)
+                {
+                    for (int i = 0; i < mDefaultCases.length; i++)
+                    {
+                        if (mDefaultCases[i].fehlerName .equals( nDefaultCaseSpinner.getItemAtPosition(position)))
+                        {
+                            AutoCompleteTextView nView = findViewById(R.id.multiAutoCompleteTextView_ErrorDescription);
+
+                            nView.setText(mDefaultCases[i].fehlerBeschreibung);
+
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+        });
     }
 
     private void SaveTicket()
